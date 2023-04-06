@@ -1,0 +1,5 @@
+function bossRush(input) {
+
+
+}
+bossRush([''])

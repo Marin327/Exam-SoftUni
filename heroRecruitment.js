@@ -1,0 +1,4 @@
+function hero(input) {
+
+}
+hero([''])

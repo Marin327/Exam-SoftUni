@@ -1,0 +1,5 @@
+function party(input) {
+
+
+}
+party([''])

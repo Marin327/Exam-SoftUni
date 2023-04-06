@@ -1,0 +1,5 @@
+function commands(input) {
+   
+    
+}
+commands([''])

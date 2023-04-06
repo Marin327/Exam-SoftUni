@@ -1,0 +1,66 @@
+function solve(arr){
+ 
+    let pirateShip = arr.shift().split(">").map(Number);
+    let warship = arr.shift().split(">").map(Number);
+     
+    let maximumHealth = Number(arr.shift())
+    let counter = 0;
+    while(arr[0] !== "Retire"){
+        let commands = arr.shift().split(" ");
+        
+        if(commands[0] === "Fire"){
+            let index = Number(commands[1]);
+            if(index >= 0 && index <= warship.length - 1){
+                warship[index] -= Number(commands[2]);
+                if(warship[index] <= 0){
+                    console.log("You won! The enemy ship has sunken.");
+                    return;
+                }
+            }
+        }else if(commands[0] === "Defend"){
+            let index1 = Number(commands[1]);
+            let index2 = Number(commands[2]);
+            if(index1 >= 0 && index1 <= pirateShip.length -1 && index2 >=0 && index2 <= pirateShip.length - 1){
+                for(let i = index1; i <= index2; i++){
+                    pirateShip[i] -= Number(commands[3]);
+     
+                    if(pirateShip[i] <= 0){
+                        console.log("You lost! The pirate ship has sunken.");
+                        return;
+                    }
+                }
+            }
+        }else if(commands[0] === "Repair"){
+            let i = Number(commands[1])
+            if(i >= 0 && i <= pirateShip.length - 1){
+                pirateShip[i] += Number(commands[2]);
+                if(pirateShip[i] > maximumHealth){
+                    pirateShip[i] = maximumHealth;
+                }
+            }
+        }else if(commands[0] === "Status"){
+            for(let i = 0; i < pirateShip.length; i++){
+                if(pirateShip[i] < maximumHealth * 0.2){
+                    counter++
+                }
+            }
+        console.log(`${counter} sections need repair.`)
+        }
+     
+    }
+    let sum1 = pirateShip.reduce((a, b) => a + b,0);
+    let sum2 = warship.reduce((a, b) => a + b, 0);
+     
+    console.log(`Pirate ship status: ${sum1}`);
+    console.log(`Warship status: ${sum2}`)
+    }
+  solve(["12>13>11>20>66",
+  "12>22>33>44>55>32>18",
+  "70",
+  "Fire 2 11",
+  "Fire 8 100",
+  "Defend 3 6 11",
+  "Defend 0 3 5",
+  "Repair 1 33",
+  "Status",
+  "Retire"])

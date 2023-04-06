@@ -1,0 +1,4 @@
+function manager(input) {
+
+}
+manager([''])

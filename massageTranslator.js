@@ -1,0 +1,4 @@
+function messageTranslator(input) {
+
+}
+messageTranslator([''])

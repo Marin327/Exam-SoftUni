@@ -1,0 +1,4 @@
+function dictionary(input) {
+
+}
+dictionary([''])
